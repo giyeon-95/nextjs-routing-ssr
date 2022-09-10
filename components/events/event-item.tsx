@@ -17,7 +17,7 @@ interface IProps {
 const EventItem = (props: IProps) => {
   const { title, image, date, location, id } = props;
 
-  const humanRedableDate = new Date(date).toLocaleDateString("es-US", {
+  const humanRedableDate = new Date(date).toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
     year: "numeric",
