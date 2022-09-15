@@ -4,6 +4,11 @@ import { Fragment } from "react";
 import EventContent from "../../components/event-detail/event-content";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventSummary from "../../components/event-detail/event-summary";
+<<<<<<< HEAD
+=======
+import Comments from "../../components/input/comments";
+import ErrorAlert from "../../components/ui/error-alert";
+>>>>>>> 0812e9f8122d6bc558c5fefd2962972637850488
 import { getAllEvents } from "../../dummy-data";
 import { getEventById, getFeaturedEvents } from "../../helpers/api-util";
 
@@ -38,6 +43,7 @@ const EventDetailPage = (props: any) => {
       <EventContent>
         <p>{event.description}</p>
       </EventContent>
+      <Comments eventId={event.id} />
     </Fragment>
   );
 };
