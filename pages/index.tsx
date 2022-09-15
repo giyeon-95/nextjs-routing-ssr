@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import EventList from "../components/events/event-list";
+import NewsletterRegistration from "../components/input/newsletter-registration";
 import { getFeaturedEvents } from "../helpers/api-util";
 
 const Home: NextPage = (props: any) => {
@@ -15,6 +16,7 @@ const Home: NextPage = (props: any) => {
           content="Find a lot of great events that allow you to evolve."
         />
       </Head>
+      <NewsletterRegistration />
       <EventList items={events} />
     </div>
   );
