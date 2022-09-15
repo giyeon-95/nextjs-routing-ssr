@@ -4,7 +4,6 @@ import { Fragment } from "react";
 import EventContent from "../../components/event-detail/event-content";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventSummary from "../../components/event-detail/event-summary";
-import ErrorAlert from "../../components/ui/error-alert";
 import { getAllEvents } from "../../dummy-data";
 import { getEventById, getFeaturedEvents } from "../../helpers/api-util";
 
@@ -32,7 +31,7 @@ const EventDetailPage = (props: any) => {
     <Fragment>
       <Head>
         <title>{event.title}</title>
-        <meta name="description" content={event.description} />
+        <meta name='description' content={event.description} />
       </Head>
       <EventSummary title={event.title} />
       <EventLogistics {...event} />
@@ -69,7 +68,7 @@ export async function getStaticPaths() {
     },
   }));
 
-  //falback(required) : false  - 미리 지정된 paths외의 값이 들어오면 404 설정 (모든 data paths설정 하지 않았다면 true, 'blocking' : loading 표시 x )
+  //falback(required) : false  - 미리 지정된 paths외의 값이 들어오면 404 설정 (모든 data paths설정 하지 않았다면 true, 'blocking' : 기존데이터 보여주면서 loading )
   return {
     paths: paths,
     fallback: "blocking",

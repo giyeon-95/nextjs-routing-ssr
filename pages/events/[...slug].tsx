@@ -1,6 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import useSWR from "swr";
+import { Fragment } from "react";
 import EventList from "../../components/events/event-list";
 import ResultsTitle from "../../components/events/results-title";
 import Button from "../../components/ui/button";
@@ -9,24 +7,25 @@ import { getFilteredEvents } from "../../helpers/api-util";
 import Head from "next/head";
 
 function FilteredEventsPage(props: any) {
-  console.log(2, props);
-
-  const filteredEvents = props.events.filter((event: any) => {
-    const eventDate = new Date(event.date);
-    return (
-      eventDate.getFullYear() === props.date.numYear &&
-      eventDate.getMonth() === props.date.numMonth - 1
-    );
-  });
+  const pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta
+        name='description'
+        content={`All events for ${props.date.year}/${props.date.month}`}
+      />
+    </Head>
+  );
 
   if (!props.events || props.events.length === 0) {
     return (
       <Fragment>
+        {pageHeadData}
         <ErrorAlert>
           <p>No events found for the chosen filter!</p>
         </ErrorAlert>
-        <div className="center">
-          <Button link="/events">Show All Events</Button>
+        <div className='center'>
+          <Button link='/events'>Show All Events</Button>
         </div>
       </Fragment>
     );
@@ -36,18 +35,14 @@ function FilteredEventsPage(props: any) {
 
   return (
     <>
-      <Head>
-        <title>Filtered Events</title>
-        <meta
-          name="description"
-          content={`All events for ${props.date.year}/${props.date.month}`}
-        />
-      </Head>
+      {pageHeadData}
       <ResultsTitle date={date} />
       <EventList items={props.events} />
     </>
   );
 }
+
+export default FilteredEventsPage;
 
 export async function getServerSideProps(context: any) {
   const { params } = context;
@@ -92,5 +87,3 @@ export async function getServerSideProps(context: any) {
     },
   };
 }
-
-export default FilteredEventsPage;
